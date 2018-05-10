@@ -12,8 +12,9 @@ public class MutantDaoTest {
 
 	@Test
 	public void test() {
-		MutantService ms = new MutantService();
+		MutantService ms = null;
 		try {
+			ms = new MutantService();
 			ms.putHuman();
 			ms.putMutant();
 

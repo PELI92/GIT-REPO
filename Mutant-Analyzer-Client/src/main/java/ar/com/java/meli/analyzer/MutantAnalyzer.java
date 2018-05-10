@@ -74,14 +74,15 @@ public class MutantAnalyzer {
 			}
 			if(ultimosCharsVerticales[j]==null) {
 				ultimosCharsVerticales[j]=charArray[j];
+				coincidenciasVerticales[j]=1;
 			}else {
 				if (ultimosCharsVerticales[j].equals(charArray[j])) {
-					coincidenciasVerticales[i]++;
-					if (coincidenciasVerticales[i] == COINCIDENCIAS_PARA_SER_MUTANTE) {
+					coincidenciasVerticales[j]++;
+					if (coincidenciasVerticales[j] == COINCIDENCIAS_PARA_SER_MUTANTE) {
 						return true;
 					}
 				}else {
-					coincidenciasVerticales[i]=1;
+					coincidenciasVerticales[j]=1;
 				}
 			}
 

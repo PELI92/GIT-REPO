@@ -14,7 +14,7 @@ public class MutantAnalyzerTest {
 		String[] dna = {
 				"ATGCGA",
 				"CAGTGC",
-				"TTGTGT",
+				"TTCTGT",
 				"AGAAGG",
 				"CCTCTA",
 				"TCACTG"};

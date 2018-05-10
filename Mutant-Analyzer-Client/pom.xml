@@ -16,17 +16,10 @@
 	<maven.compiler.source>1.8</maven.compiler.source>
 	<maven.compiler.target>1.8</maven.compiler.target>
 	<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
-	    
-	<!--
-	INSTANCE_CONNECTION_NAME from Cloud Console > SQL > Instance Details > Properties
-	or gcloud sql instances describe <instance>
-	project:region:instance for Cloud SQL 2nd Generation or
-	project:instance        for Cloud SQL 1st Generation
-	-->
 	<INSTANCE_CONNECTION_NAME>meli-203200:southamerica-east1:mutant-analyzer-db2</INSTANCE_CONNECTION_NAME>
-	<user>root</user>
-	<password>peli92</password>
-	<database>mutantAnalyzerDB</database>
+  	<user>root</user>
+  	<password>peli92</password>
+  	<database>mutantAnalyzerDB</database>
   </properties>
   
   <dependencyManagement>
@@ -89,6 +82,17 @@
 	  <artifactId>mysql-socket-factory</artifactId>
 	  <version>1.0.8</version>
 	</dependency>
+	<dependency> <!-- Only used locally -->
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.42</version>
+	</dependency>
+	<dependency>
+		<groupId>com.google.cloud.sql</groupId>
+		<artifactId>mysql-socket-factory</artifactId>
+		<version>1.0.8</version>
+	</dependency>
+
   </dependencies>
 
   <build>
@@ -109,8 +113,12 @@
           </execution>
         </executions>
       </plugin>
-
-      <plugin>
+	<plugin>
+   		<groupId>com.google.appengine</groupId>
+	   	<artifactId>appengine-maven-plugin</artifactId>
+	   	<version>1.9.63</version>
+		</plugin>
+     <plugin>
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>appengine-maven-plugin</artifactId>
         <version>${appengine.maven.plugin.version}</version>

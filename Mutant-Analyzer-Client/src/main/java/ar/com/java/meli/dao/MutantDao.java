@@ -2,6 +2,7 @@ package ar.com.java.meli.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -21,5 +22,12 @@ public class MutantDao {
 			}
 			statementInsertSql.executeUpdate();
 		}
+	}
+	public ResultSet getCount() throws SQLException {
+		final String selectSql = "SELECT isMutant, COUNT(*) FROM mutants GROUP BY isMutant;";
+		PreparedStatement statementSelectSql = connection.prepareStatement(selectSql);
+		ResultSet rs = statementSelectSql.executeQuery();
+		return rs;
+		
 	}
 }

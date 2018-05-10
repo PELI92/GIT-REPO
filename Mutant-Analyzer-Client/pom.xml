@@ -18,7 +18,7 @@
 	<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
 	<INSTANCE_CONNECTION_NAME>meli-203200:southamerica-east1:mutant-analyzer-db2</INSTANCE_CONNECTION_NAME>
   	<user>root</user>
-  	<password>peli92</password>
+  	<password>1234</password>
   	<database>mutantAnalyzerDB</database>
   </properties>
   
@@ -72,7 +72,7 @@
 	    <artifactId>gson</artifactId>
 	    <version>2.8.4</version>
 	</dependency>
-	<dependency> <!-- Only used locally -->
+	<dependency> <!--  Only used locally -->
 	  <groupId>mysql</groupId>
 	  <artifactId>mysql-connector-java</artifactId>
 	  <version>5.1.42</version>
@@ -82,19 +82,7 @@
 	  <artifactId>mysql-socket-factory</artifactId>
 	  <version>1.0.8</version>
 	</dependency>
-	<dependency> <!-- Only used locally -->
-		<groupId>mysql</groupId>
-		<artifactId>mysql-connector-java</artifactId>
-		<version>5.1.42</version>
-	</dependency>
-	<dependency>
-		<groupId>com.google.cloud.sql</groupId>
-		<artifactId>mysql-socket-factory</artifactId>
-		<version>1.0.8</version>
-	</dependency>
-
   </dependencies>
-
   <build>
     <!-- for hot reload of the web application-->
     <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>

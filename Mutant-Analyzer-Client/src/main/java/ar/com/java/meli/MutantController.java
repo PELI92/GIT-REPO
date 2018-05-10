@@ -16,27 +16,38 @@ import com.google.gson.JsonObject;
 import ar.com.java.meli.analyzer.MutantAnalyzer;
 import ar.com.java.meli.entity.RequestJSonEntity;
 import ar.com.java.meli.entity.Respuesta;
-import ar.com.java.meli.enums.KeysEnum;
 import ar.com.java.meli.report.ReportGenerator;
 import ar.com.java.meli.services.MutantService;
 import ar.com.java.meli.utils.Validator;
 
 @SuppressWarnings("serial")
 @WebServlet(
-    name = "HelloAppEngine",
-    urlPatterns = {"/api/mutant"}
+    name = "MeliMutant",
+    urlPatterns = {"/api/mutant/"}
 )
 public class MutantController extends HttpServlet {
+	
 	private static final String PROTOCOL = "HTTP";
     private static final String OK = "200-OK";
     private static final String FORBIDDEN = "403-FORBIDDEN";
     private static final String BAD_REQUEST = "400-Bad-Request";
- 
+    public MutantService mutantService = null;
+    
+    public MutantController() {
+    	init();
+    }
 
-    
-    private  MutantService mutantService = null;
-    
+    /**
+     * Retorna 200 Ok si es mutante
+     * Retorna 403 Forbidden si no es mutante
+     *
+     * @param json: DNA, String[] cuadrada
+     * @return HttpServletResponse
+     * @throws IOException
+     */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	
+    	checkService();
     	
         StringBuilder sb = new StringBuilder();
         BufferedReader reader = request.getReader();
@@ -57,10 +68,10 @@ public class MutantController extends HttpServlet {
 	    	}else {
 	    		MutantAnalyzer ma = new MutantAnalyzer();
 	    		if(ma.isMutant(dna.getDNA())) {
-	    			this.mutantService.putMutant();
+	    			mutantService.putMutant();
 	    			enviarResposeMutant(response);
 	    		}else {
-	    			this.mutantService.putHuman();
+	    			mutantService.putHuman();
 	    			enviarResposeHuman(response);
 	    		}
 	    	}
@@ -70,8 +81,23 @@ public class MutantController extends HttpServlet {
     		
     	}
     }
+	private void checkService() throws IOException {
+		if(this.mutantService == null) {
+    		throw new IOException("Servicio de baja, imposible conectar a base de datos");
+    	}
+	}
     
+    /**
+     * Retorna una simple estadistica de lo registros procesados:
+     * count_mutant_dna, count_human_dna y ratio
+     *
+     * @param void
+     * @return HttpServletResponse
+     * @throws IOException
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    	checkService();
     	try {
     		Map<String, String> map = ReportGenerator.generarReporte(mutantService);
     		
@@ -109,7 +135,11 @@ public class MutantController extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 	}
-	public void init() {
-    	this.mutantService = new MutantService();
-	}
+    public void init() {
+    	try {
+			mutantService = new MutantService();
+		} catch (SQLException e) {
+			System.out.println("no se pudo inicializer el service");
+		}     	
+    }
 }

@@ -11,9 +11,10 @@ import ar.com.java.meli.enums.KeysEnum;
 public class Respuesta {
 
     public static String mapToJson(Map<String, String> map) {
-        return "ADN: {“" +
-        		KeysEnum.MUTANT_COUNT_KEY.getValue() + "”:" + map.get(KeysEnum.MUTANT_COUNT_KEY.getValue()) + ", “"+
-        		KeysEnum.HUMAN_COUNT_KEY.getValue() + "”:" + map.get(KeysEnum.HUMAN_COUNT_KEY.getValue()) + ", “"+
-                KeysEnum.RATIO_KEY.getValue() + "”:" +  map.get(KeysEnum.RATIO_KEY.getValue()) + "}";
+
+        return "\"ADN\": {\"" +
+        		KeysEnum.MUTANT_COUNT_KEY.getValue() + "\":" + map.get(KeysEnum.MUTANT_COUNT_KEY.getValue()) + ", \""+
+        		KeysEnum.HUMAN_COUNT_KEY.getValue() + "\":" + map.get(KeysEnum.HUMAN_COUNT_KEY.getValue()) + ", \""+
+                KeysEnum.RATIO_KEY.getValue() + "\":" +  map.get(KeysEnum.RATIO_KEY.getValue()) + "}";
     }
 }

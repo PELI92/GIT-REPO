@@ -1,19 +1,20 @@
 package ar.com.java.meli.services;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
-
-import javax.servlet.ServletException;
 
 import org.junit.Test;
 
 public class MutantServiceTest {
-
+	
+	MutantService ms = null;
+	
 	@Test
-	public void test() {
+	public void test() throws SQLException {
 		MutantService ms = null;
 		ms = new MutantService();
+		System.out.println(ms.getCount().toString());
 		assertTrue(ms!=null);
 		
 	}

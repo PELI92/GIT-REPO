@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import ar.com.java.meli.analyzer.MutantAnalyzer;
+import ar.com.java.meli.utils.Validator;
 
 public class MutantAnalyzerTest {
 
@@ -18,12 +19,14 @@ public class MutantAnalyzerTest {
 				"AGAAGG",
 				"CCTCTA",
 				"TCACTG"};
+		assertTrue(Validator.isCadenaDnaValid(dna));
 		for(int i=0;i<1;i++) {
 			assertTrue(ma.isMutant(dna));
 		}
 	}
 	@Test
 	public void testMutantHorizontal() {
+
 		MutantAnalyzer ma = new MutantAnalyzer();
 		String[] dna = {
 				"ATGCGA",
@@ -32,6 +35,7 @@ public class MutantAnalyzerTest {
 				"AGAAGG",
 				"CCCCTA", 
 				"TCACTG"};
+		assertTrue(Validator.isCadenaDnaValid(dna));
 		for(int i=0;i<1;i++) {
 			assertTrue(ma.isMutant(dna));
 		}
@@ -46,6 +50,7 @@ public class MutantAnalyzerTest {
 				"AGAAGG",
 				"CTCCTA", 
 				"TCACTG"};
+		assertTrue(Validator.isCadenaDnaValid(dna));
 		for(int i=0;i<1;i++) {
 			assertTrue(ma.isMutant(dna));
 		}
@@ -60,6 +65,7 @@ public class MutantAnalyzerTest {
 				"AGAATG",
 				"CTCTGA", 
 				"TCTCTG"};
+		assertTrue(Validator.isCadenaDnaValid(dna));
 		for(int i=0;i<1;i++) {
 			assertTrue(ma.isMutant(dna));
 		}
@@ -68,12 +74,61 @@ public class MutantAnalyzerTest {
 	public void testHuman() {
 		MutantAnalyzer ma = new MutantAnalyzer();
 		String[] dna = {
-				"ATGCGA",
-				"CAGTGC",
-				"TTGTAT",
-				"AGAAGG",
-				"CTCCTA", 
-				"TCACTG"};
+				"ACACACAC",
+				"TGTGTGTG",
+				"ACACACAC",
+				"TGTGTGTG",
+				"ACACACAC",
+				"TGTGTGTG",
+				"ACACACAC",
+				"TGTGTGTG"};
+		assertTrue(Validator.isCadenaDnaValid(dna));
+		for(int i=0;i<1;i++) {
+			assertFalse(ma.isMutant(dna));
+		}
+	}
+	@Test
+	public void testHumanStressTest() {
+		MutantAnalyzer ma = new MutantAnalyzer();
+		String[] dna = {
+				"ACACACAC",
+				"TGTGTGTG",
+				"ACACACAC",
+				"TGTGTGTG",
+				"ACACACAC",
+				"TGTGTGTG",
+				"ACACACAC",
+				"TGTGTGTG"};
+		assertTrue(Validator.isCadenaDnaValid(dna));
+		for(int i=0;i<1000000;i++) {
+			assertFalse(ma.isMutant(dna));
+		}
+	}
+	@Test
+	public void testHumanSizeTest() {
+		MutantAnalyzer ma = new MutantAnalyzer();
+		String[] dna = {
+				"ACACACACACACACACACAC",
+				"TGTGTGTGTGTGTGTGTGTG",
+				"ACACACACACACACACACAC",
+				"TGTGTGTGTGTGTGTGTGTG",
+				"ACACACACACACACACACAC",
+				"TGTGTGTGTGTGTGTGTGTG",
+				"ACACACACACACACACACAC",
+				"TGTGTGTGTGTGTGTGTGTG",
+				"ACACACACACACACACACAC",
+				"TGTGTGTGTGTGTGTGTGTG",
+				"ACACACACACACACACACAC",
+				"TGTGTGTGTGTGTGTGTGTG",
+				"ACACACACACACACACACAC",
+				"TGTGTGTGTGTGTGTGTGTG",
+				"ACACACACACACACACACAC",
+				"TGTGTGTGTGTGTGTGTGTG",
+				"ACACACACACACACACACAC",
+				"TGTGTGTGTGTGTGTGTGTG",
+				"ACACACACACACACACACAC",
+				"TGTGTGTGTGTGTGTGTGTG"};
+		assertTrue(Validator.isCadenaDnaValid(dna));
 		for(int i=0;i<1;i++) {
 			assertFalse(ma.isMutant(dna));
 		}

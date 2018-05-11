@@ -82,6 +82,11 @@
 	  <artifactId>mysql-socket-factory</artifactId>
 	  <version>1.0.8</version>
 	</dependency>
+	<dependency>
+  		<groupId>com.google.cloud</groupId>
+  		<artifactId>google-cloud-logging-logback</artifactId>
+  		<version>0.46.0-alpha</version>
+	</dependency>
   </dependencies>
   <build>
     <!-- for hot reload of the web application-->

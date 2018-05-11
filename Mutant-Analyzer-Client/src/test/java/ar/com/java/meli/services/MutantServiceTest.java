@@ -14,7 +14,6 @@ public class MutantServiceTest {
 	public void test() throws SQLException {
 		MutantService ms = null;
 		ms = new MutantService();
-		System.out.println(ms.getCount().toString());
 		assertTrue(ms!=null);
 		
 	}

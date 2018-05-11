@@ -12,7 +12,7 @@ public abstract class AbstractService {
 	private Properties properties = null;
 	protected Connection connection = null;
 	
-	public void init() throws SQLException {
+	public AbstractService() throws SQLException {
 		properties = PropertiesUtils.getConfigProperties();
 	
 		String url2= "jdbc:mysql://google/"

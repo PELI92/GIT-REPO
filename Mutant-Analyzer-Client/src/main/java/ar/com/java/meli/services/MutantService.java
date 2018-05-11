@@ -9,7 +9,6 @@ public class MutantService extends AbstractService {
 	private static MutantDao mutantDao = null;
 	
 	public MutantService()  throws SQLException  {
-		init();
 		mutantDao = new MutantDao(connection); 
 	}
 	public void putMutant() throws SQLException {
